@@ -132,7 +132,12 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
         Route::post("/update/{videoGallery:id}","update")->name("update");
     });
 
-    Route::resource('unit', UnitController::class);
-
+    # Unit
+    Route::prefix('unit')->controller(UnitController::class)->name("unit.")->group(function () {
+        Route::get("","index")->name("index");
+        Route::post("/delete/{unit:id}","delete")->name("delete");
+        Route::post("store","store")->name("store");
+        Route::post("/update/{unit:id}","update")->name("update");
+    });
 });
 

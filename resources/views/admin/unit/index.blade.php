@@ -1,53 +1,62 @@
 @extends("admin.layouts.master")
 
-@section('content')
-    <div class="container-fluid">
+@section("title","Unit")
+@push(
+    "css"
+)
+<x-utility.datatable-css/>
+@endpush
+@section("master_content")
+
+
+<div class="card">
+    <div class="card-body">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Units</h3>
-                        <div class="card-tools">
-                            <a href="{{ route('admin.unit.create') }}" class="btn btn-primary">Create Unit</a>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Name (English)</th>
-                                    <th>Name (Bengali)</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($units as $unit)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $unit->name_en }}</td>
-                                        <td>{{ $unit->name_bn }}</td>
-                                        <td>
-                                            <a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-primary">Edit</a>
-                                            <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
+            <div class="col-md-8">
+                <div class="d-flex justify-content-between">
+                    <div><h3>Manage Unit</h3></div>
                 </div>
-                <!-- /.card -->
+
+                <hr>
+                <table class="table table-sm table-bordered data-table">
+                    <thead class="text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name (English)</th>
+                            <th>Name (Bengali)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
-            <!-- /.col -->
+            <div class="col-md-4">
+                <h3>Create Unit</h3>
+                <form action="{{ route('admin.unit.store') }}" method="POST">
+                    @csrf
+                    <x-form.input label="Name (English)" type="text" name="name_en" placeholder="Enter unit name in English" id="name_en" required/>
+                    <x-form.input label="Name (Bengali)" type="text" name="name_bn" placeholder="Enter unit name in Bengali" id="name_bn" required/>
+                    <x-form.submit :is_block="true"/>
+                </form>
+            </div>
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
-@endsection
+</div>
+
+@stop
+
+
+@push("script")
+
+<x-utility.datatable-js/>
+
+<script>
+    initalizeDatatable("{{ route('admin.unit.index') }}",[
+            { data: 'DT_RowIndex', 'orderable': false, 'searchable': false },
+            {data: 'name_en', name: 'name_en'},
+            {data: 'name_bn', name: 'name_bn'},
+            {data: 'actions', name: 'actions'},
+        ]);
+
+</script>
+@endpush

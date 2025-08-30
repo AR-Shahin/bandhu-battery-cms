@@ -86,6 +86,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('admin.unit.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-weight"></i>
+                        <p>
+                            Unit
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('admin.product.index')}}" class="nav-link">
                         <i class="nav-icon fab fa-product-hunt"></i>
                         <p>
@@ -93,34 +101,37 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('admin.unit.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-weight-hanging"></i>
-                        <p>
-                            Unit
-                        </p>
-                    </a>
-                </li>
             </ul>
           </li>
-            <li class="nav-item">
-                <a href="{{route('admin.services.index')}}" class="nav-link">
-                    <i class=" nav-icon fa fa-solid fa-server"></i>
-                    <p>
-                        Service
-                    </p>
+            
+            <li class="nav-item menu--open">
+                <a href="#" class="nav-link ">
+                  <i class="nav-icon fas fa-cogs"></i>
+                  <p>
+                    CMS
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('admin.services.index')}}" class="nav-link">
+                            <i class=" nav-icon fa fa-solid fa-server"></i>
+                            <p>
+                                Service
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.single-content.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-seedling"></i>
+                            <p>
+                                Single Content
+                            </p>
+                        </a>
+                    </li>
+                </ul>
             </li>
-
-            <li class="nav-item">
-                <a href="{{route('admin.single-content.index')}}" class="nav-link">
-                    <i class="nav-icon fas fa-seedling"></i>
-                    <p>
-                        Single Content
-                    </p>
-                </a>
-            </li>
-
+            
             <li class="nav-item menu--open">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-photo-video"></i>

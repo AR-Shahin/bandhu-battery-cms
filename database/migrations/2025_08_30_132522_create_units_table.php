@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('name_bn');
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

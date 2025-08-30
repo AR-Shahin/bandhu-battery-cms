@@ -2,85 +2,110 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UnitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $units = Unit::all();
-        return view('admin.unit.index', compact('units'));
+    function index(Request $request) {
+        if($request->ajax()){
+            $query = Unit::query();
+            return $this->table($query)
+                    ->addIndexColumn()
+                    ->addColumn("actions",function($row){
+                        $deleteRoute = route('admin.unit.delete', $row["id"]);
+                        $html = "";
+                        $html .= $this->generateEditButton($row) .
+                         $this->generateDeleteButton($row,$deleteRoute,"admin-delete");
+                        return $html;
+                    })
+                    ->rawColumns(["actions"])
+                    ->make(true);
+        }
+        return view("admin.unit.index");
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('admin.unit.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
+    function store(Request $request) {
         $request->validate([
-            'name_en' => 'required',
-            'name_bn' => 'required',
+            "name_en" => ["required", "string", "max:255"],
+            "name_bn" => ["required", "string", "max:255"],
+        ]);
+        
+        Unit::create([
+            "name_en" => $request->name_en,
+            "name_bn" => $request->name_bn,
         ]);
 
-        Unit::create($request->all());
+        $this->logInfo("Unit Created!");
+        $this->successAlert("Unit Created!");
 
-        return redirect()->route('unit.index')->with('success', 'Unit created successfully.');
+        return back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    function delete(Unit $unit) {
+        // Check if unit is being used (add your own logic here)
+        // if(!$unit->products()->exists()) {
+            $unit->delete();
+            $this->logInfo("Unit Deleted!");
+            $this->successAlert("Unit Deleted!");
+        // } else {
+        //     $this->warningAlert("Unit is assigned to products!");
+        // }
+
+        return redirect()->back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $unit = Unit::findOrFail($id);
-        return view('admin.unit.edit', compact('unit'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
+    function update(Request $request, Unit $unit) {
         $request->validate([
-            'name_en' => 'required',
-            'name_bn' => 'required',
+            "name_en" => ["required", "string", "max:255"],
+            "name_bn" => ["required", "string", "max:255"],
+        ]);
+        
+        $unit->update([
+            "name_en" => $request->name_en,
+            "name_bn" => $request->name_bn,
         ]);
 
-        $unit = Unit::findOrFail($id);
-        $unit->update($request->all());
+        $this->logInfo("Unit Updated!");
+        $this->successAlert("Unit Updated!");
 
-        return redirect()->route('unit.index')->with('success', 'Unit updated successfully.');
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $unit = Unit::findOrFail($id);
-        $unit->delete();
-
-        return redirect()->route('unit.index')->with('success', 'Unit deleted successfully.');
+    private function generateEditButton($row){
+        return '
+        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rowId_'.$row['id'].'">
+         <i class="fa fa-edit"></i>
+        </button>
+        <div class="modal fade" id="rowId_'.$row['id'].'" tabindex="-1" role="dialog" aria-labelledby="rowId_'.$row['id'].'Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <form action="'.route('admin.unit.update',$row["id"]).'" method="post">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="rowId_'.$row['id'].'Label">Edit Unit</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="_token" value=" '. csrf_token() .'">
+                <div class="form-group">
+                    <label for=""><b>Name (English)</b></label>
+                    <input type="text" class="form-control" name="name_en" value="'.htmlspecialchars($row['name_en']).'" required>
+                </div>
+                <div class="form-group">
+                    <label for=""><b>Name (Bengali)</b></label>
+                    <input type="text" class="form-control" name="name_bn" value="'.htmlspecialchars($row['name_bn']).'" required>
+                </div>
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>';
     }
 }
