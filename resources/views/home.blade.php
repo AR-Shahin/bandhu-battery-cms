@@ -21,9 +21,17 @@
             </div>
          </div>
       </div>
-      <div class="text-justify" style="line-height: 1.9">
-         {!! $single->about !!}
+      <div class="row">
+        <div class="col-md-6 align-self-wcenter">
+                <div class="text-justify" style="line-height: 1.9">
+                {!! $single->about !!}
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <img class="w-100" src="https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/271182682_101625825746584_7312389497501977560_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=gShDtJidrdEQ7kNvwFcINyr&_nc_oc=Admb6Ln9Z_Yx1Qs8MrGh-hdl1-BaQAbkYzzcnhgz5xEmWRO4DZMEsZnrQz4eTY3wYqU&_nc_zt=23&_nc_ht=scontent.fdac189-1.fna&_nc_gid=w8tfYrBC4AgiTU1g0Gp2rQ&oh=00_AfUhtikIjd3D2a-i5CcCWHNdKf1sGqAzpUoUGGz1H_PDdA&oe=68BA2EFC" alt="">
+        </div>
       </div>
+
    </div>
 </section>
 <section class="bg-03">

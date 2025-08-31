@@ -22,6 +22,10 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
     Route::get("/dashboard",[DashboardController::class,"index"])->name("dashboard");
     Route::post("/backup",[DashboardController::class,"backup"])->name("backup");
     Route::post("/backup-db",fn() => database_backup())->name("backup_db");
+    Route::post("/download-storage-files",[DashboardController::class,"downloadStorageFiles"])->name("download_storage_files");
+    Route::post("/create-storage-zip-background",[DashboardController::class,"createStorageZipBackground"])->name("create_storage_zip_background");
+    Route::get("/check-download-status",[DashboardController::class,"checkDownloadStatus"])->name("check_download_status");
+    Route::get("/download-ready-file/{filename}",[DashboardController::class,"downloadReadyFile"])->name("download_ready_file");
 
     # Role
     Route::prefix('roles')->controller(RoleController::class)->name("roles.")->group(function () {

@@ -4,7 +4,11 @@
         <div class="row">
           <div class="nav-items">
             <div class="logo">
-              <a href="/"><img src="{{ asset($website->logo) }}" class="w-100"></a>
+            <a href="/">
+                <img src="{{ $website->logo ? asset($website->logo) : asset('bandhu_battery.png') }}"
+                    alt="Bandhu Battery Logo"
+                    class="" style=" height: 50px;">
+            </a>
             </div>
             <div class="menu-toggle">
               <div class="menu-hamburger"></div>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('website_infos', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable()->default("Unique Solution");
+            $table->string("name")->nullable()->default("Bandhu Battery");
             $table->string("logo")->nullable()->default("storage/generic/logo__.png");
             $table->string("title")->nullable();
 
