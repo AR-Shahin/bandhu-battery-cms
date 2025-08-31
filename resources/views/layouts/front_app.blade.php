@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield("title", "Shop") | Shop</title>
-    
+
     <meta name="description" content="{{ $website->meta }}">
     <meta name="keywords" content="{{ $website->tags }}">
 
@@ -16,12 +16,21 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{{ $website->title }}">
-
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+    />
     <link rel="stylesheet" href="{{ asset("admin/plugins/select2/css/select2.min.css") }}">
     <link rel="stylesheet" href="{{ asset("frontend/assets/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("frontend") }}/assets/css/all.min.css">
     <link rel="stylesheet" href="{{ asset("frontend") }}/assets/css/style.css" />
-
+<style>
+.hover_scale {
+    transition: transform 0.3s ease-in-out; /* smooth scaling */
+}
+.hover_scale:hover {
+    transform: scale(1.2);
+}
+</style>
     @stack("css")
 </head>
 
@@ -42,6 +51,8 @@
 <script src="{{ asset("admin/plugins/select2/js/select2.full.min.js") }}"></script>
 <script src="{{ asset("frontend") }}/assets/js/popper.min.js"></script>
 <script src="{{ asset("frontend") }}/assets/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
 <script src="{{ asset("frontend") }}/assets/js/script.js"></script>
 
 <script>
