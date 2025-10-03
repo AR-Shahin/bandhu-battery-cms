@@ -19,7 +19,7 @@ class HomeController extends Controller
         $services = Service::active()->take(3)->get();
         $single = SingleContent::first();
         $products = Product::active()->take(4)->get();
-        $galleries = Gallery::isFront()->get();
+        $galleries = Gallery::isFront()->latest()->take(12)->get();
         return view("home",compact("services","single","products","galleries"));
     }
 
