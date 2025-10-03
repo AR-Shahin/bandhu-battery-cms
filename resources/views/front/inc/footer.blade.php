@@ -27,9 +27,9 @@
           <div class="footer-content">
             <h2>Services</h2>
             <ol>
-                <li><a href="/"><i class="fal fa-angle-double-right"></i>Home</a></li>
                 <li><a href="{{ route("product") }}"><i class="fal fa-angle-double-right"></i>Products</a></li>
-                <li><a href="{{ route("services") }}"><i class="fal fa-angle-double-right"></i>Services</a></li>
+                <li><a href="{{ route("services") }}"><i class="fal fa-angle-double-right"></i>Gallery</a></li>
+                <li><a href="{{ route("services") }}"><i class="fal fa-angle-double-right"></i>Videos</a></li>
 
             </ol>
           </div>
