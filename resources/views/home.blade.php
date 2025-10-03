@@ -97,7 +97,6 @@
                  <p>Our Memorable Moments</p>
         </div>
        <div class="row justify-content-center no-gutters">
-
             @foreach ($galleries as $gallery)
             <div class="col-6 col-md-2">
                 <a data-fancybox="gallery" href="{{ asset($gallery->image) }}" data-caption="Gallery Image - Bandhu Battery">
@@ -105,7 +104,26 @@
                 </a>
             </div>
             @endforeach
+       </div>
+    </div>
+ </section>
 
+
+
+ <section class="bg-02 p-0 my-3">
+        <div class="container-fluid">
+                <div class="heading text-center">
+                 <h2><a href="" class="text-dark">Video Gallery</a></h2>
+                 <p>Our Memorable Moments</p>
+        </div>
+       <div class="row justify-content-center no-gutters">
+            @foreach ($videos as $video)
+            <div class="col-6 col-md-3 p-2">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="{{ $video->youtube_embed_url }}" allowfullscreen></iframe>
+                </div>
+            </div>
+            @endforeach
        </div>
     </div>
  </section>

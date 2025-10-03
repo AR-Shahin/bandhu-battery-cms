@@ -40,10 +40,10 @@
                     <x-form.input label="Title" type="text" name="title" placeholder="Enter video title" id="title" required/>
                     <x-form.input label="YouTube Video ID" type="text" name="video_id" placeholder="e.g., dQw4w9WgXcQ" id="video_id" required/>
                     <small class="text-muted mb-3 d-block">Enter the YouTube video ID from the URL (e.g., dQw4w9WgXcQ from https://www.youtube.com/watch?v=dQw4w9WgXcQ)</small>
-                    
+
                     <x-form.input label="Custom Thumbnail URL (Optional)" type="url" name="thumb" placeholder="https://example.com/image.jpg" id="thumb"/>
                     <small class="text-muted mb-3 d-block">Leave blank to use YouTube auto-generated thumbnail</small>
-                    
+
                     <div class="form-group">
                         <label for="status"><b>Status</b></label>
                         <select name="status" class="form-control" id="status" required>
@@ -51,16 +51,16 @@
                             <option value="inactive">Inactive</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="is_front" id="is_front">
+                            <input type="checkbox" class="form-check-input" name="is_front" id="is_front" value="1">
                             <label class="form-check-label" for="is_front">
                                 Show on Frontend
                             </label>
                         </div>
                     </div>
-                    
+
                     <x-form.submit :is_block="true" value="Add Video"/>
                 </form>
             </div>

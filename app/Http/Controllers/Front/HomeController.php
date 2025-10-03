@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\Activity;
 use App\Helper\File\File;
+use App\Models\VideoGallery;
 use Illuminate\Http\Request;
 use App\Models\SingleContent;
 use App\Http\Controllers\Controller;
@@ -20,7 +21,8 @@ class HomeController extends Controller
         $single = SingleContent::first();
         $products = Product::active()->take(4)->get();
         $galleries = Gallery::isFront()->latest()->take(12)->get();
-        return view("home",compact("services","single","products","galleries"));
+        $videos = VideoGallery::active()->front()->latest()->take(4)->get();
+        return view("home",compact("services","single","products","galleries","videos"));
     }
 
     function about()  {
