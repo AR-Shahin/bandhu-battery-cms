@@ -59,6 +59,25 @@
     $('.select2').select2(
         { theme: 'bootstrap4'}
     )
+    $('[data-fancybox="gallery"]').fancybox({
+  loop: true, // Enable infinite gallery navigation
+  buttons: [
+    "zoom",
+    "slideShow",
+    "fullScreen",
+    "download",
+    "thumbs",
+    "close"
+  ],
+  animationEffect: "zoom", // 'fade', 'zoom', 'zoom-in-out'
+  transitionEffect: "slide", // 'fade', 'slide', 'circular', 'tube', 'zoom-in-out'
+  transitionDuration: 500, // Speed of transition (ms)
+  protect: true, // Disable right-click & save
+  thumbs: {
+    autoStart: true, // Show thumbnails on open
+  },
+});
+
 </script>
 @stack("js")
 </html>

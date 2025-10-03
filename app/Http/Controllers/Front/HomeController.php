@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Helper\File\File;
-use App\Http\Controllers\Controller;
-use App\Models\Activity;
+use App\Models\Team;
 use App\Models\Contact;
+use App\Models\Gallery;
 use App\Models\Product;
 use App\Models\Service;
-use App\Models\SingleContent;
-use App\Models\Team;
+use App\Models\Activity;
+use App\Helper\File\File;
 use Illuminate\Http\Request;
+use App\Models\SingleContent;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -18,7 +19,8 @@ class HomeController extends Controller
         $services = Service::active()->take(3)->get();
         $single = SingleContent::first();
         $products = Product::active()->take(4)->get();
-        return view("home",compact("services","single","products"));
+        $galleries = Gallery::isFront()->get();
+        return view("home",compact("services","single","products","galleries"));
     }
 
     function about()  {

@@ -90,7 +90,7 @@
     </div>
  </section>
 
- <section class="bg-02 p-0">
+ <section class="bg-02 p-0 my-3">
         <div class="container-fluid">
                 <div class="heading text-center">
                  <h2><a href="" class="text-dark">Gallery</a></h2>
@@ -98,13 +98,13 @@
         </div>
        <div class="row justify-content-center no-gutters">
 
-            @for ($i = 1; $i <= 12; $i++)
+            @foreach ($galleries as $gallery)
             <div class="col-6 col-md-2">
-                <a data-fancybox href="{{ asset("bandhu_battery.png") }}">
-                    <img src="{{ asset("bandhu_battery.png") }}" alt="Thumbnail" class="w-100 hover_scale">
+                <a data-fancybox="gallery" href="{{ asset($gallery->image) }}" data-caption="Gallery Image - Bandhu Battery">
+                    <img src="{{ asset($gallery->image) }}" alt="Thumbnail" class="w-100 hover_scale">
                 </a>
             </div>
-            @endfor
+            @endforeach
 
        </div>
     </div>
