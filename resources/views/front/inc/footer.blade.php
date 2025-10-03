@@ -28,8 +28,8 @@
             <h2>Services</h2>
             <ol>
                 <li><a href="{{ route("product") }}"><i class="fal fa-angle-double-right"></i>Products</a></li>
-                <li><a href="{{ route("services") }}"><i class="fal fa-angle-double-right"></i>Gallery</a></li>
-                <li><a href="{{ route("services") }}"><i class="fal fa-angle-double-right"></i>Videos</a></li>
+                <li><a href="{{ route("gallery") }}"><i class="fal fa-angle-double-right"></i>Gallery</a></li>
+                <li><a href="{{ route("video") }}"><i class="fal fa-angle-double-right"></i>Videos</a></li>
 
             </ol>
           </div>

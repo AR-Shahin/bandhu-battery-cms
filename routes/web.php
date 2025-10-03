@@ -10,6 +10,8 @@ use App\Http\Controllers\Front\HomeController;
 
 
 Route::get('/',[HomeController::class,"index"])->name("home");
+Route::get('/gallery',[HomeController::class,"gallery"])->name("gallery");
+Route::get('/video',[HomeController::class,"video"])->name("video");
 Route::get('/about-us',[HomeController::class,"about"])->name("about");
 Route::get('/services',[HomeController::class,"services"])->name("services");
 Route::get('/contact',[HomeController::class,"contact"])->name("contact");

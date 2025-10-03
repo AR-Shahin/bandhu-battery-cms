@@ -83,4 +83,15 @@ class HomeController extends Controller
        return view("front.team",compact("teams"));
     }
 
+
+    function gallery()  {
+        $galleries = Gallery::latest()->paginate(30);
+       return view("front.gallery",compact("galleries"));
+    }
+
+    function video()  {
+        $videos = VideoGallery::active()->latest()->paginate(30);
+       return view("front.video",compact("videos"));
+    }
+
 }
