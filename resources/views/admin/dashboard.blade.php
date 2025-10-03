@@ -3,7 +3,7 @@
 @section("title","Dashboard")
 
 @section("master_content")
-<div class="card">
+<div class="card d-none">
     <div class="card-body">
         <form action="{{ route("admin.backup") }}" method="POST" class="d-inline mx-2">
             @csrf
@@ -102,10 +102,10 @@ function checkDownloadStatus() {
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('ready-downloads');
-            
+
             if (data.status === 'success' && data.downloads.length > 0) {
                 let html = '<div class="table-responsive"><table class="table table-striped"><thead><tr><th>Filename</th><th>Size</th><th>Created</th><th>Action</th></tr></thead><tbody>';
-                
+
                 data.downloads.forEach(download => {
                     html += `<tr>
                         <td>${download.filename}</td>
@@ -114,7 +114,7 @@ function checkDownloadStatus() {
                         <td><a href="${download.download_url}" class="btn btn-sm btn-success"><i class="fas fa-download mr-1"></i> Download</a></td>
                     </tr>`;
                 });
-                
+
                 html += '</tbody></table></div>';
                 container.innerHTML = html;
             } else if (data.status === 'no_downloads') {

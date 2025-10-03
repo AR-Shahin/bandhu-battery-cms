@@ -14,8 +14,11 @@ use App\Http\Controllers\Admin\{
     SubCategoryController,
     UnitController,
     VideoGalleryController,
-    WebsiteController
-};;
+    WebsiteController,
+    GalleryController
+};
+
+;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function(){
@@ -142,6 +145,14 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
         Route::post("/delete/{unit:id}","delete")->name("delete");
         Route::post("store","store")->name("store");
         Route::post("/update/{unit:id}","update")->name("update");
+    });
+
+    # Gallery
+    Route::prefix('gallery')->controller(GalleryController::class)->name("gallery.")->group(function () {
+        Route::get("","index")->name("index");
+        Route::delete("/delete/{gallery:id}","delete")->name("delete");
+        Route::post("store","store")->name("store");
+        Route::put("/update/{gallery:id}","update")->name("update");
     });
 });
 

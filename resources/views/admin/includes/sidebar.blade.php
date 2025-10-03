@@ -103,7 +103,7 @@
                 </li>
             </ul>
           </li>
-            
+
             <li class="nav-item menu--open">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-cogs"></i>
@@ -131,7 +131,7 @@
                     </li>
                 </ul>
             </li>
-            
+
             <li class="nav-item menu--open">
                 <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-photo-video"></i>
@@ -146,6 +146,14 @@
                             <i class="nav-icon fab fa-youtube"></i>
                             <p>
                                 Videos
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.gallery.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-photo-video"></i>
+                            <p>
+                                Gallery
                             </p>
                         </a>
                     </li>
