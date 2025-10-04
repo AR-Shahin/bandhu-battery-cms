@@ -29,6 +29,7 @@
         </div>
         <div class="col-md-6">
             <img class="w-100" src="{{asset('frontend/bb.jpg')}}" alt="">
+            <img class="w-100" src="{{ asset('archive/IMG_20230123_131616.jpg') }}" alt="">
         </div>
       </div>
 
